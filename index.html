@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Express</title>
+  <title>Casino Express</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -11,13 +11,13 @@
       height: 100%;
       width: 100%;
       font-family: 'Rubik', sans-serif;
-      background: url('./imagen.png') no-repeat center center fixed;
+      background: url('./imagen.png') no-repeat top center fixed;
       background-size: cover;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: flex-start;
       align-items: center;
-      padding: 2rem;
+      padding: 2rem 1rem;
     }
     .whatsapp-button {
       background: #25d366;
@@ -29,18 +29,23 @@
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
-      animation: pulse 1.5s infinite;
-      margin-bottom: 2rem;
+      animation: pulse 1.5s infinite, fadeInUp 1s ease-in-out;
+      margin-top: 75vh;
     }
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
     @media screen and (max-width: 768px) {
       .whatsapp-button {
         font-size: 1rem;
         padding: 0.8rem 1.5rem;
+        margin-top: 80vh;
       }
     }
   </style>
