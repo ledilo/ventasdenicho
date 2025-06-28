@@ -3,37 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casino Express</title>
+  <title>Express</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
+    html, body {
+      height: 100%;
+      width: 100%;
       font-family: 'Rubik', sans-serif;
-      background: #1c003b;
-      color: #fff;
-      text-align: center;
+      background: url('./imagen.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
       padding: 2rem;
-      overflow: hidden;
-    }
-    h1 {
-      font-size: 2.5rem;
-      color: #b36fff;
-      margin-bottom: 0.5rem;
-    }
-    h2 {
-      font-size: 1.2rem;
-      color: #fff;
-      margin-bottom: 2rem;
-    }
-    #timer {
-      background: #00ff7f;
-      color: #000;
-      padding: 0.7rem 1.5rem;
-      font-size: 1.5rem;
-      font-weight: bold;
-      border-radius: 10px;
-      display: inline-block;
-      margin-bottom: 1.5rem;
     }
     .whatsapp-button {
       background: #25d366;
@@ -45,17 +29,19 @@
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
-      margin-bottom: 1.5rem;
-    }
-    .minimo {
-      font-size: 1.5rem;
+      animation: pulse 1.5s infinite;
       margin-bottom: 2rem;
     }
-    .mockup {
-      width: 90%;
-      max-width: 300px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px #000;
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    @media screen and (max-width: 768px) {
+      .whatsapp-button {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+      }
     }
   </style>
   <!-- Meta Pixel Code -->
@@ -75,30 +61,11 @@
   <!-- End Meta Pixel Code -->
 </head>
 <body>
-  <h1>CREAMOS TU USUARIO</h1>
-  <h2>¡Antes de que termine el tiempo!</h2>
-  <div id="timer">01:00</div>
-
-  <br>
   <a href="#" id="goToWhatsapp" class="whatsapp-button">
     💬 ¡Hablamos por WhatsApp!
   </a>
 
-  <div class="minimo">Mínimo de carga<br><strong>$1500</strong></div>
-  <img src="./mockup_casino.png" alt="Casino en vivo" class="mockup" />
-
   <script>
-    // Timer countdown
-    let duration = 60;
-    const timerDisplay = document.getElementById('timer');
-    const interval = setInterval(() => {
-      duration--;
-      let mins = Math.floor(duration / 60);
-      let secs = duration % 60;
-      timerDisplay.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-      if (duration <= 0) clearInterval(interval);
-    }, 1000);
-
     // WhatsApp Button (ofuscado y evento pixel)
     const encoded = "NTQyNjE2MDg3MjQ1"; // Base64 de 542616087245
     document.getElementById("goToWhatsapp").addEventListener("click", function(e) {
