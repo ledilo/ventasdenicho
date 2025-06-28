@@ -13,11 +13,17 @@
       font-family: 'Rubik', sans-serif;
       background: url('./fondo.jpg') no-repeat top center fixed;
       background-size: cover;
+      overflow: hidden;
+    }
+    .container {
+      height: 100%;
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
       padding: 2rem 1rem;
+      position: relative;
     }
     .whatsapp-button {
       background: #25d366;
@@ -32,6 +38,22 @@
       animation: pulse 1.5s infinite, fadeInUp 1s ease-in-out;
       margin-top: 75vh;
     }
+    .alerta-bono {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 255, 136, 0.2);
+      color: #00ff88;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 1rem;
+      text-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88;
+      box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
+      z-index: 1000;
+      animation: pulseGlow 2s infinite;
+    }
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
@@ -41,11 +63,21 @@
       0% { opacity: 0; transform: translateY(30px); }
       100% { opacity: 1; transform: translateY(0); }
     }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88; }
+      50% { box-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88; }
+      100% { box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88; }
+    }
     @media screen and (max-width: 768px) {
       .whatsapp-button {
         font-size: 1rem;
         padding: 0.8rem 1.5rem;
         margin-top: 80vh;
+      }
+      .alerta-bono {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+        bottom: 60px;
       }
     }
   </style>
@@ -66,18 +98,25 @@
   <!-- End Meta Pixel Code -->
 </head>
 <body>
-  <a href="#" id="goToWhatsapp" class="whatsapp-button">
-    💬 ¡Hablamos por WhatsApp!
-  </a>
+  <div class="container">
+    <a href="#" id="goToWhatsapp" class="whatsapp-button">
+      💬 ¡Hablamos por WhatsApp!
+    </a>
+    <div class="alerta-bono">
+      ¡BONOS DEL 20% TODOS LOS DÍAS!
+    </div>
+  </div>
 
   <script>
-    // WhatsApp Button (ofuscado y evento pixel)
+    // WhatsApp Button (ofuscado y evento pixel cliente potencial)
     const encoded = "NTQyNjE2MDg3MjQ1"; // Base64 de 542616087245
     document.getElementById("goToWhatsapp").addEventListener("click", function(e) {
       e.preventDefault();
-      fbq('track', 'Subscribe');
+      fbq('track', 'Lead', {
+        content_name: 'Cliente Potencial por WhatsApp'
+      });
       const numero = atob(encoded);
-      const mensaje = encodeURIComponent("Hola, quiero crear mi usuario ahora");
+      const mensaje = encodeURIComponent("Hola, quiero más información..");
       window.location.href = `https://wa.me/${numero}?text=${mensaje}`;
     });
   </script>
